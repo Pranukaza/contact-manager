@@ -76,18 +76,15 @@ namespace ContactManager.Controllers
         {
             var contactList = await _context.Contacts
                 .OrderBy(x => x.FirstName)
-                .Include(x => x.EmailAddresses)
                 .ToListAsync();
 
-            var contactsVM = contactList.Select(a => new ContactViewModel(a)).ToList();
-
-            return PartialView("_ContactTable", contactsVM);
+            return PartialView("_ContactTable", new ContactViewModel { Contacts = contactList });
         }
 
         public IActionResult Index()
-        {
-            return View();
-        }
+            {
+                return View();
+            }
 
         public IActionResult NewContact()
         {
@@ -95,7 +92,7 @@ namespace ContactManager.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> SaveContact([FromBody] SaveContactViewModel model)
+        public async Task<IActionResult> SaveContact([FromBody]SaveContactViewModel model)
         {
             var contact = model.ContactId == Guid.Empty
                 ? new Contact { Title = model.Title, FirstName = model.FirstName, LastName = model.LastName, DOB = model.DOB }
@@ -166,7 +163,7 @@ namespace ContactManager.Controllers
 
             message.Body = new TextPart("plain")
             {
-                Text = "Contact with id:" + contactId.ToString() + " was updated"
+                Text = "Contact with id:" + contactId.ToString() +" was updated"
             };
 
             using (var client = new SmtpClient())
