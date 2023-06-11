@@ -11,36 +11,30 @@ using Microsoft.EntityFrameworkCore;
 using MailKit;
 using MimeKit;
 using MailKit.Net.Smtp;
-using ContactManagerServices.Data;
+using ContactManagerServices.Services;
 
 namespace ContactManager.Controllers
 {
     public class ContactsController : Controller
     {
-        private readonly ApplicationContext _context;
+        private readonly ContactService contactService;
         private readonly IHubContext<ContactHub> _hubContext;
 
-        public ContactsController(ApplicationContext context, IHubContext<ContactHub> hubContext)
+        public ContactsController(ContactService contactService, IHubContext<ContactHub> hubContext)
         {
-            _context = context;
+            this.contactService = contactService;
             _hubContext = hubContext;
         }
 
         public async Task<IActionResult> DeleteContact(Guid id)
         {
-            var contactToDelete = await _context.Contacts
-                .Include(x => x.EmailAddresses)
-                .FirstOrDefaultAsync(x => x.Id == id);
+            var contactToDelete = await contactService.GetContactAsync(id);
 
             if (contactToDelete == null)
             {
                 return BadRequest();
             }
-
-            _context.EmailAddresses.RemoveRange(contactToDelete.EmailAddresses);
-            _context.Contacts.Remove(contactToDelete);
-
-            await _context.SaveChangesAsync();
+            await contactService.DeleteContactAsync(contactToDelete);
 
             await _hubContext.Clients.All.SendAsync("Update");
 
@@ -49,10 +43,7 @@ namespace ContactManager.Controllers
 
         public async Task<IActionResult> EditContact(Guid id)
         {
-            var contact = await _context.Contacts
-                .Include(x => x.EmailAddresses)
-                .Include(x => x.Addresses)
-                .FirstOrDefaultAsync(x => x.Id == id);
+            var contact = await contactService.GetContactAsync(id);
 
             if (contact == null)
             {
@@ -75,14 +66,18 @@ namespace ContactManager.Controllers
 
         public async Task<IActionResult> GetContacts()
         {
-            var contactList = await _context.Contacts
-                .OrderBy(x => x.FirstName)
-                .Include(x => x.EmailAddresses)
-                .ToListAsync();
+            try
+            {
+                var contactList = await contactService.GetContactsAsync();
+                var contactsVM = contactList.Select(a => new ContactViewModel(a)).ToList();
 
-            var contactsVM = contactList.Select(a => new ContactViewModel(a)).ToList();
+                return PartialView("_ContactTable", contactsVM);
+            }
+            catch (Exception ex)
+            {
 
-            return PartialView("_ContactTable", contactsVM);
+                throw;
+            }
         }
 
         public IActionResult Index()
@@ -100,56 +95,15 @@ namespace ContactManager.Controllers
         {
             var contact = model.ContactId == Guid.Empty
                 ? new Contact { Title = model.Title, FirstName = model.FirstName, LastName = model.LastName, DOB = model.DOB }
-                : await _context.Contacts.Include(x => x.EmailAddresses).Include(x => x.Addresses).FirstOrDefaultAsync(x => x.Id == model.ContactId);
+                : await contactService.GetContactAsync(model.ContactId);
 
             if (contact == null)
             {
                 return NotFound();
             }
 
-            _context.EmailAddresses.RemoveRange(contact.EmailAddresses);
-            _context.Addresses.RemoveRange(contact.Addresses);
+            await contactService.AddUpdateContactAsync(model.ToDataModel(contact));
 
-
-            foreach (var email in model.Emails)
-            {
-                contact.EmailAddresses.Add(new EmailAddress
-                {
-                    Type = email.Type,
-                    Email = email.Email,
-                    Contact = contact
-                });
-            }
-
-            foreach (var address in model.Addresses)
-            {
-                contact.Addresses.Add(new Address
-                {
-                    Street1 = address.Street1,
-                    Street2 = address.Street2,
-                    City = address.City,
-                    State = address.State,
-                    Zip = address.Zip,
-                    Type = address.Type
-                });
-            }
-
-            contact.Title = model.Title;
-            contact.FirstName = model.FirstName;
-            contact.LastName = model.LastName;
-            contact.DOB = model.DOB;
-
-            if (model.ContactId == Guid.Empty)
-            {
-                await _context.Contacts.AddAsync(contact);
-            }
-            else
-            {
-                _context.Contacts.Update(contact);
-            }
-
-
-            await _context.SaveChangesAsync();
             await _hubContext.Clients.All.SendAsync("Update");
 
             SendEmailNotification(contact.Id);
