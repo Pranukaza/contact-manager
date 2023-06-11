@@ -7,7 +7,7 @@ using System.Xml;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
-namespace ContactManager.Data
+namespace ContactManagerServices.Data
 {
     public class ApplicationContext : DbContext
     {

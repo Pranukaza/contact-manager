@@ -1,4 +1,4 @@
-﻿namespace ContactManager.Data
+﻿namespace ContactManagerServices.Data
 {
     public enum EmailType
     {

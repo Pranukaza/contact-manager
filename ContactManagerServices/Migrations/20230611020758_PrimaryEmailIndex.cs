@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace ContactManagerStarter.Migrations
+namespace ContactManagerServices.Migrations
 {
     /// <inheritdoc />
     public partial class PrimaryEmailIndex : Migration

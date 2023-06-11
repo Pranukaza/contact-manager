@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
-namespace ContactManager.Data
+namespace ContactManagerServices.Services
 {
-    public class Entity
+    public class ContactService
     {
-        public Guid Id { get; set; }
     }
 }

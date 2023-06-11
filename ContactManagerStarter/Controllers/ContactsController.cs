@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ContactManager.Data;
+using ContactManagerServices.Data;
 using ContactManager.Hubs;
 using ContactManager.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using MailKit;
 using MimeKit;
 using MailKit.Net.Smtp;
+using ContactManagerServices.Data;
 
 namespace ContactManager.Controllers
 {
