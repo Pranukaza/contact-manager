@@ -1,0 +1,12 @@
+C:\Users\Pranathi\source\repos\contact-manager\ContactManagerServices\obj\Debug\net7.0\ContactManagerServices.csproj.AssemblyReference.cache
+C:\Users\Pranathi\source\repos\contact-manager\ContactManagerServices\obj\Debug\net7.0\ContactManagerServices.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Pranathi\source\repos\contact-manager\ContactManagerServices\obj\Debug\net7.0\ContactManagerServices.AssemblyInfoInputs.cache
+C:\Users\Pranathi\source\repos\contact-manager\ContactManagerServices\obj\Debug\net7.0\ContactManagerServices.AssemblyInfo.cs
+C:\Users\Pranathi\source\repos\contact-manager\ContactManagerServices\obj\Debug\net7.0\ContactManagerServices.csproj.CoreCompileInputs.cache
+C:\Users\Pranathi\source\repos\contact-manager\ContactManagerServices\bin\Debug\net7.0\ContactManagerServices.deps.json
+C:\Users\Pranathi\source\repos\contact-manager\ContactManagerServices\bin\Debug\net7.0\ContactManagerServices.dll
+C:\Users\Pranathi\source\repos\contact-manager\ContactManagerServices\bin\Debug\net7.0\ContactManagerServices.pdb
+C:\Users\Pranathi\source\repos\contact-manager\ContactManagerServices\obj\Debug\net7.0\ContactManagerServices.dll
+C:\Users\Pranathi\source\repos\contact-manager\ContactManagerServices\obj\Debug\net7.0\refint\ContactManagerServices.dll
+C:\Users\Pranathi\source\repos\contact-manager\ContactManagerServices\obj\Debug\net7.0\ContactManagerServices.pdb
+C:\Users\Pranathi\source\repos\contact-manager\ContactManagerServices\obj\Debug\net7.0\ref\ContactManagerServices.dll

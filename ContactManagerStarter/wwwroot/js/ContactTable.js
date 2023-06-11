@@ -36,9 +36,12 @@ $(function () {
         let emailTypeClass;
 
         if (emailAddressType === "Personal") {
-            emailTypeClass = "badge-primary"; //blue badge
-        } else {
+            emailTypeClass = "badge-info"; //blue badge
+        } else if (emailAddressType === "Business") {
             emailTypeClass = "badge-success"; //green badge
+        }
+        else if (emailAddressType === "Primary") {
+            emailTypeClass = "badge-primary"; //green badge
         }
 
         if (validateEmail(emailAddress)) {

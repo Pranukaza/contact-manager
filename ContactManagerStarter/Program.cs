@@ -1,8 +1,9 @@
-using ContactManager.Data;
+using ContactManagerServices.Data;
 using ContactManager.Hubs;
 using Newtonsoft.Json;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Serialization;
+using ContactManagerServices.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +19,10 @@ builder.Services.AddDbContext<ApplicationContext>(options =>
                 options
                     .UseSqlServer(builder.Configuration.GetConnectionString("ContactDb"),
                         opts => opts.CommandTimeout(600)));
+
+
+builder.Services.AddTransient<ApplicationContext>();
+builder.Services.AddTransient<ContactService>();
 
 builder.Services.AddSignalR();
 
