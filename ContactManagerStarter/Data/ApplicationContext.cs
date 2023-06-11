@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Threading.Tasks;
+using System.Xml;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -142,6 +144,12 @@ namespace ContactManager.Data
                     Type = AddressType.Primary,
                     ContactId = sundar.Id
                 });
+
+
+            modelBuilder.Entity<EmailAddress>()
+            .HasIndex("ContactId", "Type")
+            .IsUnique()
+            .HasFilter("[Type] = 2");
         }
     }
 }
