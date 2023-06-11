@@ -16,7 +16,7 @@ namespace ContactManager.Models
             this.Title = contact.Title;
             this.FirstName = contact.FirstName;
             this.LastName = contact.LastName;
-            this.PrimaryEmailAddress = contact.EmailAddresses.Any(a => a.Type == EmailType.Primary) ? contact.EmailAddresses.First(a => a.Type == EmailType.Primary).Email : contact.EmailAddresses.First().Email;
+            this.PrimaryEmailAddress = contact.EmailAddresses.Any(a => a.Type == EmailType.Primary) ? contact.EmailAddresses.First(a => a.Type == EmailType.Primary).Email : (contact.EmailAddresses.Any() ? contact.EmailAddresses.First().Email : string.Empty);
         }
 
         public Guid Id { get; set; }

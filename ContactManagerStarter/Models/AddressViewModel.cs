@@ -14,5 +14,18 @@ namespace ContactManager.Models
         public string City { get; set; }
         public string State { get; set; }
         public int Zip { get; set; }
+        public Address ToDataModel()
+        {
+            return new Address
+            {
+                Street1 = this.Street1,
+                Street2 = this.Street2,
+                City = this.City,
+                State = this.State,
+                Zip = this.Zip,
+                Type = this.Type
+            };
+        }
+
     }
 }
