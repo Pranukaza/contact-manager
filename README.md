@@ -1,70 +1,34 @@
-# Getting Started with Create React App
+# Contact Manager
+This solution contains an easy to use and simple contact manager. It also works well on mobile devices!
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Technologies
+- Visual Studio 2022
+- SQL Server 2019
+- .NET 7
+- EntityFramework Core 7
+- Bootstrap 4.4.1
+- SignalR JS 2.4.1
+- JQuery 3.3.1
 
-## Available Scripts
+## Local Enviroment Setup
 
-In the project directory, you can run:
+1. You need to have the .NET 7 SDK installed. Be sure to download the latest version for Visual Studio 2022.
 
-### `npm start`
+2. Use the latest version of Visual Studio 2022: https://visualstudio.microsoft.com/downloads/
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+3. Install SQL Server 2019 (or later version), Developer or Express edition: https://www.microsoft.com/en-us/sql-server/sql-server-downloads. By default this uses localdb; adjust the connection string in appsettings.json if needed. 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+## Usage
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* To get started, navigate to the **Contact** tab in the Navigation bar. You should see some existing contacts already. This was provided by the seed data we generated earlier.
 
-### `npm run build`
+* To create a new contact press the blue **New Contact** button and fill in the contact's First and Last name in the popup window.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* If you wish to add any email addresses, fill in the **Email** text input, define if it is a Personal email or a Business email, and press the **Add** button. You can use the red **X** button to delete an email from the list. Once you are finished, be sure to press the green **Save** button to save your changes.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+* If you wish to add any addresses, fill in the **Address** text inputs, define if it is a Primary address or a Business address, and press the **Add** button. You can use the red **X** button to delete an address from the list. Once you are finished, be sure to press the green **Save** button to save your changes.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* If you wish to edit a contact, just double click on their name and you will be greeted by the Edit Contact popup window. Once you are finished, be sure to press the green **Save** button to save your changes. Use the **Cancel** button to discard any unwanted changes.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* To delete a contact just press the red **X** and confirm that you want to delete that contact.
